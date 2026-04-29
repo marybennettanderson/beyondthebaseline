@@ -259,12 +259,12 @@
     </button>
     <ul class="nav-links" id="nav-links">
       <li><a href="#whatis">About / Sobre Nosotros</a></li>
+      <li><a href="#free-gear">Free Gear / Equipo Gratuito</a></li>
+      <li><a href="#schedule">Daily Schedule / Horario</a></li>
       <li><a href="#purpose">Our Purpose / Nuestro Propósito</a></li>
       <li><a href="#founder">Founder / Fundador</a></li>
       <li><a href="volunteer.html">Volunteer / Voluntario</a></li>
       <li><a href="gallery.html">Gallery / Galería</a></li>
-      <li><a href="#free-gear">Free Gear / Equipo Gratuito</a></li>
-      <li><a href="#schedule">Daily Schedule / Horario</a></li>
       <li><a href="#register" class="nav-cta">Register &mdash; Free / Inscríbete &mdash; Gratis</a></li>
     </ul>
   </div>
@@ -300,7 +300,7 @@
           </div>
           <div style="display: grid; grid-template-columns: 180px 1fr; gap: 26px; padding: 22px 0; border-bottom: 1px solid var(--sky); align-items: baseline;">
             <dt style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 26px; color: var(--lime-dk); font-weight: 700;">When <span style="display:block; font-style: italic; color: var(--muted); font-weight: 500; font-size: 16px; margin-top: 6px;">Cuándo</span></dt>
-            <dd style="margin: 0; font-size: 17px; color: var(--text); line-height: 1.6;">One week &mdash; <strong style="color: var(--navy);">Monday through Friday, 9 AM to 12 PM</strong>. <em style="color: var(--muted); display: block; font-size: 15.5px; margin-top: 6px;">Una semana &mdash; de Lunes a Viernes, 9 AM a 12 PM.</em></dd>
+            <dd style="margin: 0; font-size: 17px; color: var(--text); line-height: 1.6;"><strong style="color: var(--navy);">July 6&ndash;10</strong> &mdash; Monday through Friday, 9 AM to 12 PM. <em style="color: var(--muted); display: block; font-size: 15.5px; margin-top: 6px;">Del 6 al 10 de julio &mdash; de Lunes a Viernes, 9 AM a 12 PM.</em></dd>
           </div>
           <div style="display: grid; grid-template-columns: 180px 1fr; gap: 26px; padding: 22px 0; border-bottom: 1px solid var(--sky); align-items: baseline;">
             <dt style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 26px; color: var(--lime-dk); font-weight: 700;">Cost <span style="display:block; font-style: italic; color: var(--muted); font-weight: 500; font-size: 16px; margin-top: 6px;">Costo</span></dt>
@@ -539,6 +539,10 @@
       <span class="section-label">Sign Up Today / Inscríbete Hoy</span>
       <h2 class="section-title" style="margin-bottom:10px;">Register Your Child<br><span style="font-size:55%;font-style:italic;font-weight:400;color:var(--muted);">Inscriba a su Hijo/a</span></h2>
       <p>Takes about 5 minutes &mdash; no printing required. &nbsp;|&nbsp; <em>Toma 5 minutos &mdash; no necesita imprimir nada.</em></p>
+      <div style="display:inline-block; margin-top:16px; background:var(--skylt); border:2px solid var(--lime-dk); padding:18px 24px; border-radius:4px; max-width:640px; text-align:left;">
+        <strong style="font-size:15px; color:var(--navy); display:block; margin-bottom:6px;">Space is limited to 25 campers / <em style="font-weight:400;font-style:italic;font-size:13px;">Espacio limitado a 25 campistas</em></strong>
+        <span style="font-size:14px; color:var(--muted); line-height:1.7;">If we're at capacity when you register, don't worry — we'll keep your info and contact you as soon as a spot opens up! <em>/ Si estamos al máximo, no se preocupe — guardaremos su información y nos comunicaremos en cuanto haya un lugar disponible.</em></span>
+      </div>
     </div>
     <div class="register-wrap">
       <div class="register-head">
@@ -567,11 +571,7 @@
       <div class="form-embed-zone" id="form-area">
       <!-- CAPACITY BANNER -->
       <div class="capacity-banner">
-        <span class="cap-label">Camp Spots / <em style="font-weight:600;font-style:italic;text-transform:none;letter-spacing:0;">Cupos del Campamento</em></span>
-        <div class="cap-bar-wrap">
-          <div class="cap-bar-track"><div class="cap-bar-fill" id="cap-bar"></div></div>
-        </div>
-        <span class="cap-count" id="cap-count"></span>
+        <span style="font-size:15px; font-weight:900; color:var(--navy);">Register by May 15th / <em style="font-weight:600;font-style:italic;">Inscríbase antes del 15 de mayo</em></span>
       </div>
 
       <!-- WAITLIST NOTICE (shown when full) -->
@@ -1086,31 +1086,6 @@
 
   // ── CAPACITY SETTINGS ─────────────────────────────────────────────
   // Update REGISTERED_COUNT as people sign up (e.g. change 0 to 12)
-  var MAX_SPOTS = 25;
-  var REGISTERED_COUNT = 0; // <-- UPDATE THIS NUMBER as registrations come in
-
-  (function() {
-    var isFull = REGISTERED_COUNT >= MAX_SPOTS;
-    var pct = Math.min(100, Math.round((REGISTERED_COUNT / MAX_SPOTS) * 100));
-    var remaining = MAX_SPOTS - REGISTERED_COUNT;
-
-    var bar = document.getElementById('cap-bar');
-    var count = document.getElementById('cap-count');
-    bar.style.width = pct + '%';
-
-    if (isFull) {
-      bar.classList.add('full');
-      count.classList.add('full');
-      count.textContent = 'FULL / LLENO';
-      document.getElementById('waitlist-notice').style.display = 'block';
-      // Switch hidden field so you can tell registrations from waitlist in Formspree
-      var typeField = document.getElementById('form-type-field');
-      if (typeField) typeField.value = 'waitlist';
-    } else {
-      count.textContent = remaining + ' of ' + MAX_SPOTS + ' spots left / ' + remaining + ' de ' + MAX_SPOTS + ' cupos disponibles';
-    }
-  })();
-
   // ── HAMBURGER MENU ────────────────────────────────────────────────
   var hamburger = document.getElementById('hamburger');
   var navLinks = document.getElementById('nav-links');

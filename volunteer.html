@@ -135,7 +135,7 @@
       <div class="form-head">
         <h2>Volunteer Registration</h2>
         <p>Beyond the Baseline Tennis Camp &mdash; July 6&ndash;10, 2026 &mdash; Bishop England High School &mdash; 9:00 AM &ndash; 12:00 PM</p>
-        <p style="margin-top:10px; color:rgba(255,255,255,0.6); font-size:13px;">If you have any questions please don't hesitate to email me at <script>document.write('<a href="mailto:'+'marybennettanderson'+'@'+'gmail.com" style="color:var(--lime); font-weight:800;">'+'marybennettanderson'+'@'+'gmail.com</a>');</script></p>
+        <p style="margin-top:10px; color:rgba(255,255,255,0.6); font-size:13px;">If you have any questions please don't hesitate to email me at <a href="/cdn-cgi/l/email-protection#cca1adbeb5aea9a2a2a9b8b8ada2a8a9bebfa3a28caba1ada5a0e2afa3a1" style="color:var(--lime); font-weight:800;"><span class="__cf_email__" data-cfemail="4924283b302b2c27272c3d3d28272d2c3b3a2627092e24282026672a2624">[email&#160;protected]</span></a></p>
       </div>
       <div class="form-body">
 
@@ -147,6 +147,8 @@
         </div>
 
         <form action="https://formspree.io/f/mzdkwerr" method="POST" id="vol-form">
+          <input type="hidden" name="_replyto" value="marybennettanderson@gmail.com" />
+          <input type="hidden" name="_subject" value="New Volunteer Application — Beyond the Baseline" />
           <input type="hidden" name="form-type" value="volunteer-registration" />
 
           <!-- SECTION 1: PERSONAL INFO -->
@@ -261,7 +263,7 @@
               </div>
             </div>
             <div style="background:#E8F5E9; border-left:4px solid var(--lime-dk); padding:14px 18px; margin-bottom:4px; border-radius:0 6px 6px 0;">
-              <p style="font-size:13px; color:#1B5E20; font-weight:700; line-height:1.65; margin:0;">&#9888; Please note: Volunteers are expected to arrive by <strong>8:30 AM</strong> for setup and remain until <strong>12:30 PM</strong> for cleanup. Camp runs 9:00 AM &ndash; 12:00 PM. If you are unable to meet these times on a given day, please notify us in advance at <script>document.write('<a href="mailto:'+'marybennettanderson'+'@'+'gmail.com" style="color:#1B5E20;">'+'marybennettanderson'+'@'+'gmail.com</a>');</script>.</p>
+              <p style="font-size:13px; color:#1B5E20; font-weight:700; line-height:1.65; margin:0;">&#9888; Please note: Volunteers are expected to arrive by <strong>8:30 AM</strong> for setup and remain until <strong>12:30 PM</strong> for cleanup. Camp runs 9:00 AM &ndash; 12:00 PM. If you are unable to meet these times on a given day, please notify us in advance at <a href="/cdn-cgi/l/email-protection#721f13000b10171c1c170606131c161700011d1c32151f131b1e5c111d1f" style="color:#1B5E20;"><span class="__cf_email__" data-cfemail="dbb6baa9a2b9beb5b5beafafbab5bfbea9a8b4b59bbcb6bab2b7f5b8b4b6">[email&#160;protected]</span></a>.</p>
             </div>
             <div class="frow frow-1" style="margin-top:14px;">
               <div class="ffield">
@@ -465,7 +467,7 @@
               <p style="margin-bottom:10px;"><strong>5. Social Media Policy:</strong> I agree not to post any photos, videos, or identifying information about campers on my personal social media accounts or any other public platform without the express written consent of Beyond the Baseline and the child's parent or guardian. This policy exists to protect the privacy and safety of all campers.</p>
               <p style="margin-bottom:10px;"><strong>6. Drug, Alcohol & Weapons Free:</strong> I agree to arrive and remain completely free of alcohol, drugs, and any impairing substances during all camp hours and volunteer activities. I also agree not to bring any weapons or dangerous items of any kind onto camp grounds. Any volunteer found to be in violation of this policy will be immediately removed from the program and authorities will be contacted if necessary.</p>
               <p style="margin-bottom:10px;"><strong>7. Right to Remove:</strong> I understand that Beyond the Baseline reserves the right to remove any volunteer from the program at any time and for any reason, including but not limited to violations of this agreement, inappropriate conduct, or any behavior deemed harmful to campers, staff, or the program.</p>
-              <p style="margin-bottom:10px;"><strong>8. Liability:</strong> I volunteer at my own risk and release Beyond the Baseline and its organizers from any liability for injury or loss during my volunteer service. </p>
+              <p style="margin-bottom:10px;"><strong>8. Liability:</strong> I hereby assume full responsibility for any and all damages, injuries (including death), communicable diseases, or losses that I may sustain or incur while volunteering with Beyond the Baseline. I hereby waive all claims and release and hold harmless Beyond the Baseline, its organizers, shareholders, directors, officers, employees, representatives, agents, affiliates, and lessees — individually or otherwise — from any and all liability, claims, suits, damages, expenses, fees, actions, or rights of action or judgments as a result of injury, death, or property damage arising out of or connected with my volunteer service. I further covenant not to sue any of the above-named parties for any such claims. I have read and fully understand this release and acknowledge that I am giving up substantial rights by agreeing to it voluntarily.</p>
               <p style="margin-bottom:10px;"><strong>9. Photo Release:</strong> I consent to being photographed or filmed during camp activities for use in promotional materials and social media. </p>
               <p><strong>10. Confidentiality:</strong> I agree to keep any personal information about campers and their families confidential. </p>
             </div>
@@ -545,14 +547,35 @@
   <div style="font-size:11px; color:rgba(255,255,255,0.22);">&copy; 2026 Beyond the Baseline. All rights reserved.</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   const form = document.getElementById('vol-form');
   const success = document.getElementById('vol-success');
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const data = new FormData(form);
-      fetch('https://formspree.io/f/mzdkwerr', {
+      const btn = form.querySelector('.form-submit');
+      btn.disabled = true;
+      btn.textContent = 'Submitting…';
+      fetch(form.action, {
         method: 'POST',
-        headers: {'Accept': 'application/json'},
-    
+        body: new FormData(form),
+        headers: {'Accept': 'application/json'}
+      }).then(function(res) {
+        if (res.ok) {
+          form.style.display = 'none';
+          if (success) success.style.display = 'block';
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Submit Volunteer Application';
+          alert('Something went wrong. Please try again.');
+        }
+      }).catch(function() {
+        btn.disabled = false;
+        btn.textContent = 'Submit Volunteer Application';
+        alert('Network error. Please try again.');
+      });
+    });
+  }
+</script>
+</body>
+</html>
