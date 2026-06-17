@@ -1159,6 +1159,218 @@
 </section>
 
 <!-- FOOTER -->
+
+<!-- CONSENT WAIVER FORM -->
+<section id="consent-form" style="background:#f0f4f8; padding:80px 0;">
+  <div class="container" style="max-width:760px;">
+    <div style="text-align:center; margin-bottom:40px;">
+      <span class="section-label">Required Form / Formulario Requerido</span>
+      <h2 class="section-title" style="margin-bottom:10px;">Consent & Waiver Form<br><span style="font-size:55%;font-style:italic;font-weight:400;color:var(--muted);">Formulario de Consentimiento y Exención</span></h2>
+      <p style="color:var(--muted); font-size:14px;">Please complete and submit this form after registering. Your child cannot attend camp without it. / <em>Por favor complete y envíe este formulario después de registrarse. Su hijo/a no podrá asistir al campamento sin él.</em></p>
+    </div>
+    <style>
+      /* Scoped form styles */
+      .waiver-form-wrap { font-family: var(--font), Arial, sans-serif; }
+      .waiver-form-wrap .lang-toggle { display:flex; justify-content:center; gap:0; margin-bottom:0; border-radius:8px 8px 0 0; overflow:hidden; }
+      .waiver-form-wrap .lang-btn { flex:1; padding:12px; font-family:var(--font),Arial,sans-serif; font-size:14px; font-weight:700; border:none; cursor:pointer; transition:all 0.2s; background:#e8eef6; color:#1A2A5E; }
+      .waiver-form-wrap .lang-btn.active { background:#1A2A5E; color:#B2D94A; }
+      .waiver-form-wrap .form-body { background:white; padding:32px; border-radius:0 0 12px 12px; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
+      .waiver-form-wrap .section { margin-bottom:28px; }
+      .waiver-form-wrap .section-title-w { font-size:13px; font-weight:900; letter-spacing:1.5px; text-transform:uppercase; color:white; background:#1A2A5E; padding:10px 16px; border-radius:6px; margin-bottom:14px; }
+      .waiver-form-wrap .section-body { font-size:13px; line-height:1.7; color:#2a2a2a; background:#f8fafc; border:1px solid #e0e8f0; border-radius:8px; padding:16px; margin-bottom:10px; }
+      .waiver-form-wrap .section-body ol { padding-left:20px; }
+      .waiver-form-wrap .section-body ol li { margin-bottom:10px; }
+      .waiver-form-wrap label { display:block; font-size:13px; font-weight:700; color:#1A2A5E; margin-bottom:6px; }
+      .waiver-form-wrap .req { color:#cc0000; }
+      .waiver-form-wrap input[type="text"], .waiver-form-wrap input[type="date"] { width:100%; padding:10px 14px; border:2px solid #dde4ee; border-radius:8px; font-family:var(--font),Arial,sans-serif; font-size:14px; color:#1a1a1a; margin-bottom:16px; transition:border-color 0.2s; }
+      .waiver-form-wrap input[type="text"]:focus, .waiver-form-wrap input[type="date"]:focus { outline:none; border-color:#1A2A5E; }
+      .waiver-form-wrap .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+      .waiver-form-wrap .check-item { display:flex; align-items:flex-start; gap:12px; background:#f0f5ff; border:1.5px solid #ccd8f0; border-radius:8px; padding:14px 16px; margin-bottom:10px; transition:all 0.15s; }
+      .waiver-form-wrap .check-item:hover { border-color:#1A2A5E; background:#e8f0ff; }
+      .waiver-form-wrap .check-item.checked { border-color:#B2D94A; background:#f0fbdf; }
+      .waiver-form-wrap .check-item input[type="checkbox"] { width:20px; height:20px; margin-top:2px; flex-shrink:0; accent-color:#1A2A5E; cursor:pointer; }
+      .waiver-form-wrap .check-item label { font-size:13px; font-weight:600; color:#1a2a4a; margin:0; cursor:pointer; line-height:1.55; }
+      .waiver-form-wrap .required-note { font-size:12px; color:#cc0000; margin-bottom:20px; }
+      .waiver-form-wrap .submit-section { background:#f0f5ff; border:2px solid #ccd8f0; border-radius:10px; padding:20px; margin-top:24px; }
+      .waiver-form-wrap .submit-section p { font-size:13px; color:#444; margin-bottom:14px; line-height:1.6; }
+      .waiver-form-wrap .btn-submit { width:100%; padding:16px; background:#1A2A5E; color:#B2D94A; font-family:var(--font),Arial,sans-serif; font-size:16px; font-weight:900; border:none; border-radius:8px; cursor:pointer; letter-spacing:0.5px; transition:background 0.2s; }
+      .waiver-form-wrap .btn-submit:hover { background:#253d7a; }
+      .waiver-form-wrap .error-msg { color:#cc0000; font-size:13px; font-weight:700; margin-top:10px; display:none; }
+      .waiver-form-wrap .deadline { text-align:center; font-size:12px; color:#888; margin-top:14px; }
+      @media(max-width:560px) { .waiver-form-wrap .two-col { grid-template-columns:1fr; } .waiver-form-wrap .form-body { padding:20px 16px; } }
+    </style>
+
+    <div class="waiver-form-wrap">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setWaiverLang('en')" id="wbtn-en">English</button>
+        <button class="lang-btn" onclick="setWaiverLang('es')" id="wbtn-es">Español</button>
+      </div>
+      <div class="form-body">
+        <p class="required-note" id="w-req-note">* Required fields</p>
+
+        <!-- Camper info -->
+        <div class="section">
+          <label for="w-camper-name"><span class="req">*</span> <span class="wt" data-en="Camper Full Name" data-es="Nombre Completo del Campista"></span></label>
+          <input type="text" id="w-camper-name" placeholder="First and last name / Nombre y apellido">
+          <div class="two-col">
+            <div>
+              <label for="w-dob"><span class="req">*</span> <span class="wt" data-en="Date of Birth" data-es="Fecha de Nacimiento"></span></label>
+              <input type="date" id="w-dob">
+            </div>
+            <div>
+              <label for="w-parent-name"><span class="req">*</span> <span class="wt" data-en="Parent/Guardian Full Name" data-es="Nombre Completo del Padre/Madre/Tutor"></span></label>
+              <input type="text" id="w-parent-name" placeholder="Full name / Nombre completo">
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 1 -->
+        <div class="section">
+          <div class="section-title-w wt" data-en="1. WAIVER/RELEASE FOR COMMUNICABLE DISEASES" data-es="1. EXENCIÓN/RENUNCIA POR ENFERMEDADES TRANSMISIBLES"></div>
+          <div class="section-body">
+            <span class="wt" data-en="In consideration of being allowed to participate in Beyond the Baseline free youth tennis camp and related events and activities, the undersigned acknowledges and agrees that:" data-es="En consideración de que se le permita participar en el campamento de tenis juvenil gratuito Beyond the Baseline y eventos relacionados, el/la abajo firmante reconoce y acepta que:"></span>
+            <ol style="margin-top:10px;">
+              <li class="wt" data-en="Participation includes possible exposure to infectious diseases including but not limited to MRSA, influenza, measles, and COVID-19. While personal discipline may reduce this risk, the risk of serious illness and death does exist." data-es="La participación incluye la posible exposición a enfermedades infecciosas incluyendo, pero no limitado a, MRSA, influenza, sarampión y COVID-19. Si bien la disciplina personal puede reducir este riesgo, el riesgo de enfermedades graves y muerte sí existe."></li>
+              <li class="wt" data-en="I KNOWINGLY AND FREELY ASSUME ALL SUCH RISKS, both known and unknown, EVEN IF ARISING FROM THE NEGLIGENCE OF THE RELEASEES, and assume full responsibility for my child's participation." data-es="VOLUNTARIA Y CONSCIENTEMENTE ASUMO TODOS ESTOS RIESGOS, tanto conocidos como desconocidos, INCLUSO SI SURGEN DE LA NEGLIGENCIA DE LOS LIBERADOS, y asumo plena responsabilidad por la participación de mi hijo/a."></li>
+              <li class="wt" data-en="I, for myself and on behalf of my heirs and next of kin, HEREBY RELEASE AND HOLD HARMLESS Beyond the Baseline, its founder Mary Bennett Anderson, volunteers, coaches, and associated personnel from any and all illness, disability, death, or loss arising from participation in this program." data-es="Yo, en mi nombre y en nombre de mis herederos, POR LA PRESENTE LIBERO Y EXIMO DE RESPONSABILIDAD a Beyond the Baseline, su fundadora Mary Bennett Anderson, voluntarios, entrenadores y personal asociado de cualquier enfermedad, discapacidad, muerte o pérdida que surja de la participación en este programa."></li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section">
+          <div class="section-title-w wt" data-en="2. RELEASE & WAIVER OF LIABILITY / MINOR PARTICIPANT RELEASE" data-es="2. EXENCIÓN DE RESPONSABILIDAD / EXENCIÓN DEL PARTICIPANTE MENOR"></div>
+          <div class="section-body">
+            <span class="wt" data-en="IN CONSIDERATION of being permitted to participate in Beyond the Baseline (BTB), I and my child's personal representatives, heirs, and assigns:" data-es="EN CONSIDERACIÓN de que se le permita participar en Beyond the Baseline (BTB), yo y los representantes personales, herederos y cesionarios de mi hijo/a:"></span>
+            <ol style="margin-top:10px;">
+              <li class="wt" data-en="ACKNOWLEDGE that my child is qualified, in good health, and in proper physical condition to participate, and that if conditions are ever unsafe, my child will immediately stop participating." data-es="RECONOCEMOS que mi hijo/a está calificado/a, en buena salud y en condición física adecuada para participar, y que si las condiciones son inseguras, mi hijo/a suspenderá inmediatamente su participación."></li>
+              <li class="wt" data-en="FULLY UNDERSTAND that the activity involves risks of serious bodily injury, including permanent disability and death, whether caused by my child's own actions, others, or the NEGLIGENCE OF THE RELEASEES, and I FULLY ACCEPT AND ASSUME ALL SUCH RISKS." data-es="ENTENDEMOS PLENAMENTE que la actividad implica riesgos de lesiones corporales graves, incluyendo discapacidad permanente y muerte, ya sea causada por las acciones de mi hijo/a, de otros, o la NEGLIGENCIA DE LOS LIBERADOS, y ACEPTO Y ASUMO PLENAMENTE TODOS ESOS RIESGOS."></li>
+              <li class="wt" data-en="HEREBY RELEASE, HOLD HARMLESS, AND COVENANT NOT TO SUE Beyond the Baseline; Mary Bennett Anderson (Founder); Bishop England High School; and all associated volunteers, employees, agents, sponsors, and lessors of premises FROM ALL LIABILITY, CLAIMS, DAMAGES, OR CAUSES OF ACTION arising from participation in this program, to the fullest extent permitted by law." data-es="POR LA PRESENTE LIBERAMOS, EXIMIMOS DE RESPONSABILIDAD Y NOS COMPROMETEMOS A NO DEMANDAR a Beyond the Baseline; Mary Bennett Anderson (Fundadora); Bishop England High School; y todos los voluntarios, empleados, agentes, patrocinadores y arrendadores de locales asociados DE TODA RESPONSABILIDAD, RECLAMACIONES, DAÑOS O CAUSAS DE ACCIÓN que surjan de la participación en este programa, en la mayor medida permitida por la ley."></li>
+            </ol>
+            <p style="margin-top:12px; font-weight:700; font-size:12px;" class="wt" data-en="I, THE MINOR PARTICIPANT'S PARENT/LEGAL GUARDIAN, HAVE READ AND FULLY UNDERSTAND THIS RELEASE AND UNDERSTAND THAT I HAVE GIVEN UP SUBSTANTIAL RIGHTS BY AGREEING TO IT. I SIGN IT FREELY AND VOLUNTARILY." data-es="YO, EL PADRE/MADRE/TUTOR LEGAL DEL/LA PARTICIPANTE MENOR, HE LEÍDO Y ENTIENDO COMPLETAMENTE ESTA EXENCIÓN Y ENTIENDO QUE HE CEDIDO DERECHOS SUSTANCIALES AL ACEPTARLA. LA FIRMO LIBRE Y VOLUNTARIAMENTE."></p>
+          </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section">
+          <div class="section-title-w wt" data-en="3. HEALTH ATTESTATION" data-es="3. DECLARACIÓN DE SALUD"></div>
+          <p style="font-size:13px; color:#444; margin-bottom:12px;" class="wt" data-en="Please check all three boxes to confirm:" data-es="Por favor marque las tres casillas para confirmar:"></p>
+          <div class="check-item">
+            <input type="checkbox" id="w-chk1" onchange="wUpdateCheck(this)">
+            <label for="w-chk1" class="wt" data-en="I attest that my son/daughter has been examined by a doctor within the last year and is fully cleared to participate in this camp." data-es="Declaro que mi hijo/a ha sido examinado/a por un médico en el último año y está completamente autorizado/a para participar en este campamento."></label>
+          </div>
+          <div class="check-item">
+            <input type="checkbox" id="w-chk2" onchange="wUpdateCheck(this)">
+            <label for="w-chk2" class="wt" data-en="I attest that my son/daughter is up to date on all vaccinations, including measles and tetanus." data-es="Declaro que mi hijo/a está al día con todas sus vacunas, incluyendo sarampión y tétanos."></label>
+          </div>
+          <div class="check-item">
+            <input type="checkbox" id="w-chk3" onchange="wUpdateCheck(this)">
+            <label for="w-chk3" class="wt" data-en="I attest that there are no medical conditions that would prohibit my son/daughter from participating in camp." data-es="Declaro que no hay condiciones médicas que impidan a mi hijo/a participar en el campamento."></label>
+          </div>
+        </div>
+
+        <!-- Acknowledgement -->
+        <div class="section">
+          <div class="section-title-w wt" data-en="ACKNOWLEDGEMENT & SIGNATURE" data-es="RECONOCIMIENTO Y FIRMA"></div>
+          <div class="check-item">
+            <input type="checkbox" id="w-chk-agree" onchange="wUpdateCheck(this)">
+            <label for="w-chk-agree" class="wt" data-en="I have read and agree to all sections of this form, including the Communicable Disease Waiver, Release and Waiver of Liability, Minor Participant Release, and Health Attestation. I understand I have given up substantial rights by agreeing to this form." data-es="He leído y acepto todas las secciones de este formulario, incluyendo la exención de enfermedades transmisibles, la renuncia de responsabilidad, la exención del participante menor y la declaración de salud. Entiendo que he cedido derechos sustanciales al aceptar este formulario."></label>
+          </div>
+          <div style="margin-top:16px;">
+            <label for="w-signature"><span class="req">*</span> <span class="wt" data-en="Typed Signature (type your full name as your legal signature)" data-es="Firma Escrita (escriba su nombre completo como firma legal)"></span></label>
+            <input type="text" id="w-signature" placeholder="Type your full name / Escriba su nombre completo">
+          </div>
+          <div>
+            <label for="w-sig-date"><span class="req">*</span> <span class="wt" data-en="Date" data-es="Fecha"></span></label>
+            <input type="date" id="w-sig-date">
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="submit-section">
+          <p class="wt" data-en="When you click Submit, your email app will open with your completed form. Just press Send!" data-es="Al hacer clic en Enviar, se abrirá su aplicación de correo electrónico con su formulario completado. ¡Solo presione Enviar!"></p>
+          <button class="btn-submit" onclick="wSubmitForm()">
+            <span class="wt" data-en="Submit Form / Open Email" data-es="Enviar Formulario / Abrir Correo"></span>
+          </button>
+          <p class="error-msg" id="w-error-msg"></p>
+          <p class="deadline wt" data-en="Deadline: July 4, 2026  —  beyondthebaselinetennis.com" data-es="Fecha límite: 4 de julio de 2026  —  beyondthebaselinetennis.com"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  let wLang = 'en';
+  function setWaiverLang(lang) {
+    wLang = lang;
+    document.getElementById('wbtn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('wbtn-es').classList.toggle('active', lang === 'es');
+    document.querySelectorAll('.wt').forEach(el => {
+      const text = el.dataset[lang];
+      if (text) el.textContent = text;
+    });
+    document.getElementById('w-req-note').textContent = lang === 'en' ? '* Required fields' : '* Campos requeridos';
+  }
+  function wUpdateCheck(cb) {
+    cb.closest('.check-item').classList.toggle('checked', cb.checked);
+  }
+  function wSubmitForm() {
+    const camper = document.getElementById('w-camper-name').value.trim();
+    const dob = document.getElementById('w-dob').value;
+    const parent = document.getElementById('w-parent-name').value.trim();
+    const sig = document.getElementById('w-signature').value.trim();
+    const sigDate = document.getElementById('w-sig-date').value;
+    const chk1 = document.getElementById('w-chk1').checked;
+    const chk2 = document.getElementById('w-chk2').checked;
+    const chk3 = document.getElementById('w-chk3').checked;
+    const agree = document.getElementById('w-chk-agree').checked;
+    const err = document.getElementById('w-error-msg');
+    if (!camper || !dob || !parent || !sig || !sigDate || !chk1 || !chk2 || !chk3 || !agree) {
+      err.style.display = 'block';
+      err.textContent = wLang === 'en'
+        ? 'Please fill in all required fields and check all boxes before submitting.'
+        : 'Por favor complete todos los campos requeridos y marque todas las casillas antes de enviar.';
+      return;
+    }
+    err.style.display = 'none';
+    const subject = encodeURIComponent(`Beyond the Baseline — Consent & Waiver Form — ${camper}`);
+    const body = encodeURIComponent(
+`BEYOND THE BASELINE — CONSENT & WAIVER FORM
+Language: ${wLang === 'en' ? 'English' : 'Español'}
+Submitted: ${new Date().toLocaleDateString()}
+
+CAMPER INFORMATION
+Camper Full Name: ${camper}
+Date of Birth: ${dob}
+Parent/Guardian Name: ${parent}
+
+SECTION 1 — COMMUNICABLE DISEASE WAIVER
+✅ Parent has read and agreed to the Communicable Disease Waiver including acknowledgement of exposure risks to MRSA, influenza, measles, COVID-19, and assumption of all such risks.
+
+SECTION 2 — RELEASE & WAIVER OF LIABILITY / MINOR PARTICIPANT RELEASE
+✅ Parent has read and agreed to the full Release and Waiver of Liability and Minor Participant Release, releasing Beyond the Baseline, Mary Bennett Anderson, Bishop England High School, and all associated personnel from all liability to the fullest extent permitted by law.
+
+SECTION 3 — HEALTH ATTESTATION
+✅ My son/daughter has been examined by a doctor within the last year and is fully cleared to participate.
+✅ My son/daughter is up to date on all vaccinations, including measles and tetanus.
+✅ There are no medical conditions that would prohibit my son/daughter from participating in camp.
+
+ACKNOWLEDGEMENT & SIGNATURE
+✅ Parent has read and agreed to all sections of this form.
+
+Typed Signature: ${sig}
+Date: ${sigDate}`
+    );
+    window.location.href = `mailto:marybennettanderson@gmail.com?subject=${subject}&body=${body}`;
+  }
+  // Set default date
+  const wToday = new Date().toISOString().split('T')[0];
+  document.getElementById('w-sig-date').value = wToday;
+  // Initialize English text on load
+  setWaiverLang('en');
+</script>
+
 <footer>
   <div class="footer-brand">Beyond the <span>Baseline</span></div>
   <div class="footer-tagline">Serving Communities Through Tennis &mdash; Daniel Island, SC<br><em style="opacity:0.7;font-size:0.92em;">Sirviendo a las comunidades a través del tenis &mdash; Daniel Island, SC</em></div>
