@@ -55,13 +55,6 @@
   .hero-title em { font-style: italic; color: var(--lime); }
   .hero-sub { font-size: 14px; color: rgba(255,255,255,0.55); font-weight: 600; line-height: 1.6; }
 
-  /* TABS */
-  .tabs-bar { background: var(--navy-dk); border-bottom: 2px solid rgba(184,216,74,0.15); padding: 0 40px; overflow-x: auto; white-space: nowrap; }
-  .tabs-inner { display: inline-flex; }
-  .tab-btn { background: none; border: none; border-bottom: 3px solid transparent; color: rgba(255,255,255,0.5); font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 18px 28px; cursor: pointer; transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
-  .tab-btn:hover { color: rgba(255,255,255,0.8); }
-  .tab-btn.active { color: var(--lime); border-bottom-color: var(--lime); }
-
   /* GALLERY */
   .gallery-section { padding: 56px 40px; max-width: 1200px; margin: 0 auto; }
   .day-panel { display: none; }
@@ -128,8 +121,6 @@
     .nav-inner { padding: 12px 20px; }
     .gallery-section { padding: 36px 20px; }
     .photo-grid { columns: 2; }
-    .tabs-bar { padding: 0 20px; }
-    .tab-btn { padding: 16px 18px; font-size: 11px; }
   }
   @media (max-width: 480px) {
     .photo-grid { columns: 1; }
@@ -170,17 +161,6 @@
   </div>
 </section>
 
-<div class="tabs-bar">
-  <div class="tabs-inner">
-    <button class="tab-btn active" onclick="switchDay('all')">All Days</button>
-    <button class="tab-btn" onclick="switchDay('day1')">Day 1 — Mon Jul 6</button>
-    <button class="tab-btn" onclick="switchDay('day2')">Day 2 — Tue Jul 7</button>
-    <button class="tab-btn" onclick="switchDay('day3')">Day 3 — Wed Jul 8</button>
-    <button class="tab-btn" onclick="switchDay('day4')">Day 4 — Thu Jul 9</button>
-    <button class="tab-btn" onclick="switchDay('day5')">Day 5 — Fri Jul 10</button>
-  </div>
-</div>
-
 <div class="gallery-section">
   <div class="privacy-notice">
     <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -189,7 +169,7 @@
 
   <!-- ALL -->
   <div class="day-panel active" id="panel-all">
-    <div class="day-header"><h2>All Photos <span class="photo-count" id="count-all">0 photos</span></h2><p>Every moment from camp week</p></div>
+    <div class="day-header"><h2>Camp Photos <span class="photo-count" id="count-all">0 photos</span></h2><p>Every moment from camp week — July 6&ndash;10, 2026</p></div>
     <div class="upload-zone" id="zone-all">
       <div class="upload-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
       <h3>Upload Photos</h3><p>Drag & drop or click to browse</p><span class="upload-btn-label">Choose Photos</span>
@@ -201,75 +181,6 @@
     <div class="empty-state" id="empty-all" style="display:none"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>No photos yet — check back soon!</p></div>
   </div>
 
-  <!-- DAY 1 -->
-  <div class="day-panel" id="panel-day1">
-    <div class="day-header"><h2>Day 1 — Monday, July 6 <span class="photo-count" id="count-day1">0 photos</span></h2><p>First day on the court!</p></div>
-    <div class="upload-zone" id="zone-day1">
-      <div class="upload-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
-      <h3>Upload Day 1 Photos</h3><p>Drag & drop or click to browse</p><span class="upload-btn-label">Choose Photos</span>
-    </div>
-    <input type="file" id="input-day1" accept="image/*" multiple style="display:none" />
-    <div class="uploading-bar" id="uploading-day1">⏳ Uploading photos...</div>
-    <div class="photo-grid" id="grid-day1"></div>
-    <div class="loading-state" id="loading-day1"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg><p>Loading photos...</p></div>
-    <div class="empty-state" id="empty-day1" style="display:none"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>No photos yet for Day 1.</p></div>
-  </div>
-
-  <!-- DAY 2 -->
-  <div class="day-panel" id="panel-day2">
-    <div class="day-header"><h2>Day 2 — Tuesday, July 7 <span class="photo-count" id="count-day2">0 photos</span></h2><p>Day 2 highlights</p></div>
-    <div class="upload-zone" id="zone-day2">
-      <div class="upload-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
-      <h3>Upload Day 2 Photos</h3><p>Drag & drop or click to browse</p><span class="upload-btn-label">Choose Photos</span>
-    </div>
-    <input type="file" id="input-day2" accept="image/*" multiple style="display:none" />
-    <div class="uploading-bar" id="uploading-day2">⏳ Uploading photos...</div>
-    <div class="photo-grid" id="grid-day2"></div>
-    <div class="loading-state" id="loading-day2"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg><p>Loading photos...</p></div>
-    <div class="empty-state" id="empty-day2" style="display:none"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>No photos yet for Day 2.</p></div>
-  </div>
-
-  <!-- DAY 3 -->
-  <div class="day-panel" id="panel-day3">
-    <div class="day-header"><h2>Day 3 — Wednesday, July 8 <span class="photo-count" id="count-day3">0 photos</span></h2><p>Midweek moments</p></div>
-    <div class="upload-zone" id="zone-day3">
-      <div class="upload-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
-      <h3>Upload Day 3 Photos</h3><p>Drag & drop or click to browse</p><span class="upload-btn-label">Choose Photos</span>
-    </div>
-    <input type="file" id="input-day3" accept="image/*" multiple style="display:none" />
-    <div class="uploading-bar" id="uploading-day3">⏳ Uploading photos...</div>
-    <div class="photo-grid" id="grid-day3"></div>
-    <div class="loading-state" id="loading-day3"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg><p>Loading photos...</p></div>
-    <div class="empty-state" id="empty-day3" style="display:none"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>No photos yet for Day 3.</p></div>
-  </div>
-
-  <!-- DAY 4 -->
-  <div class="day-panel" id="panel-day4">
-    <div class="day-header"><h2>Day 4 — Thursday, July 9 <span class="photo-count" id="count-day4">0 photos</span></h2><p>Day 4 action shots</p></div>
-    <div class="upload-zone" id="zone-day4">
-      <div class="upload-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
-      <h3>Upload Day 4 Photos</h3><p>Drag & drop or click to browse</p><span class="upload-btn-label">Choose Photos</span>
-    </div>
-    <input type="file" id="input-day4" accept="image/*" multiple style="display:none" />
-    <div class="uploading-bar" id="uploading-day4">⏳ Uploading photos...</div>
-    <div class="photo-grid" id="grid-day4"></div>
-    <div class="loading-state" id="loading-day4"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg><p>Loading photos...</p></div>
-    <div class="empty-state" id="empty-day4" style="display:none"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>No photos yet for Day 4.</p></div>
-  </div>
-
-  <!-- DAY 5 -->
-  <div class="day-panel" id="panel-day5">
-    <div class="day-header"><h2>Day 5 — Friday, July 10 <span class="photo-count" id="count-day5">0 photos</span></h2><p>Last day & closing celebration!</p></div>
-    <div class="upload-zone" id="zone-day5">
-      <div class="upload-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
-      <h3>Upload Day 5 Photos</h3><p>Drag & drop or click to browse</p><span class="upload-btn-label">Choose Photos</span>
-    </div>
-    <input type="file" id="input-day5" accept="image/*" multiple style="display:none" />
-    <div class="uploading-bar" id="uploading-day5">⏳ Uploading photos...</div>
-    <div class="photo-grid" id="grid-day5"></div>
-    <div class="loading-state" id="loading-day5"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg><p>Loading photos...</p></div>
-    <div class="empty-state" id="empty-day5" style="display:none"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>No photos yet for Day 5.</p></div>
-  </div>
 
 </div>
 
@@ -297,8 +208,10 @@
   var VIEWER_PW = 'btb2026';
   var ADMIN_PW  = 'btb2026admin';
   var isAdmin   = false;
-  var DAYS      = ['all','day1','day2','day3','day4','day5'];
-  var activeDay = 'all';
+  // All storage folders to pull photos from (includes any photos already
+  // uploaded during camp week under day-specific folders, plus the main
+  // 'all' folder that new uploads go into).
+  var FOLDERS   = ['all','day1','day2','day3','day4','day5'];
   var lbIndex   = 0;
   var lbUrls    = [];
 
@@ -335,21 +248,19 @@
 
   async function listAllPhotos() {
     var allFiles = [];
-    for (var i = 0; i < DAYS.length; i++) {
-      var day = DAYS[i];
-      if (day === 'all') continue;
-      var files = await listPhotos(day);
+    for (var i = 0; i < FOLDERS.length; i++) {
+      var folder = FOLDERS[i];
+      var files = await listPhotos(folder);
       files.forEach(function(f) {
-        allFiles.push({ name: f.name, _day: day, metadata: f.metadata });
+        allFiles.push({ name: f.name, _day: folder, metadata: f.metadata });
       });
     }
     return allFiles;
   }
 
-  async function uploadPhoto(file, day) {
+  async function uploadPhoto(file) {
     var ext = file.name.split('.').pop();
-    var folder = day === 'all' ? 'all' : day;
-    var fileName = folder + '/' + Date.now() + '_' + Math.random().toString(36).slice(2) + '.' + ext;
+    var fileName = 'all/' + Date.now() + '_' + Math.random().toString(36).slice(2) + '.' + ext;
     console.log('Uploading to:', SUPABASE_URL + '/storage/v1/object/' + BUCKET + '/' + fileName);
     console.log('File type:', file.type, 'File size:', file.size);
     try {
@@ -421,15 +332,14 @@
         del.className = 'photo-delete';
         del.innerHTML = '&#10005;';
         del.title = 'Delete photo';
-        (function(filePath, d) {
+        (function(filePath) {
           del.addEventListener('click', async function(e) {
             e.stopPropagation();
             if (!confirm('Delete this photo?')) return;
             await deletePhoto(filePath);
-            renderGrid(d);
-            if (d !== 'all') renderGrid('all');
+            renderGrid('all');
           });
-        })(item.path, day);
+        })(item.path);
         div.appendChild(del);
       }
 
@@ -438,10 +348,10 @@
   }
 
   // ── Upload handler ───────────────────────────────────────────
-  function setupUpload(day) {
-    var zone      = document.getElementById('zone-' + day);
-    var input     = document.getElementById('input-' + day);
-    var uploading = document.getElementById('uploading-' + day);
+  function setupUpload() {
+    var zone      = document.getElementById('zone-all');
+    var input     = document.getElementById('input-all');
+    var uploading = document.getElementById('uploading-all');
 
     zone.addEventListener('click', function() { input.click(); });
 
@@ -450,12 +360,11 @@
       if (!files.length) return;
       uploading.classList.add('visible');
       for (var i = 0; i < files.length; i++) {
-        await uploadPhoto(files[i], day);
+        await uploadPhoto(files[i]);
       }
       uploading.classList.remove('visible');
       e.target.value = '';
-      renderGrid(day);
-      if (day !== 'all') renderGrid('all');
+      renderGrid('all');
     });
 
     zone.addEventListener('dragover', function(e) { e.preventDefault(); zone.classList.add('dragover'); });
@@ -467,23 +376,11 @@
       if (!files.length) return;
       uploading.classList.add('visible');
       for (var i = 0; i < files.length; i++) {
-        await uploadPhoto(files[i], day);
+        await uploadPhoto(files[i]);
       }
       uploading.classList.remove('visible');
-      renderGrid(day);
-      if (day !== 'all') renderGrid('all');
+      renderGrid('all');
     });
-  }
-
-  // ── Tabs ─────────────────────────────────────────────────────
-  function switchDay(day) {
-    activeDay = day;
-    document.querySelectorAll('.tab-btn').forEach(function(btn, i) {
-      btn.classList.toggle('active', DAYS[i] === day);
-    });
-    document.querySelectorAll('.day-panel').forEach(function(p) { p.classList.remove('active'); });
-    document.getElementById('panel-' + day).classList.add('active');
-    renderGrid(day);
   }
 
   // ── Lightbox ─────────────────────────────────────────────────
@@ -520,11 +417,10 @@
     document.getElementById('password-gate').style.display = 'none';
     if (role === 'admin') {
       isAdmin = true;
-      DAYS.forEach(function(d) { document.getElementById('zone-' + d).classList.add('visible'); });
+      document.getElementById('zone-all').classList.add('visible');
     }
     renderGrid('all');
-    DAYS.forEach(function(d) { if (d !== 'all') setupUpload(d); });
-    setupUpload('all');
+    setupUpload();
   }
 
   var saved = sessionStorage.getItem('btb-role');
